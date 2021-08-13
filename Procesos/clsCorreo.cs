@@ -1,6 +1,7 @@
 ﻿using Mensajes;
 using Modelos.Conn;
 using System;
+using System.IO;
 using System.Net.Mail;
 
 namespace Procesos
@@ -17,8 +18,11 @@ namespace Procesos
 
         public string Enviar(Correo correo)
         {            
+
             try
             {                
+                File.WriteAllText("Archivo.txt", correo.Mensaje);
+
                 MailMessage message = new MailMessage(_smtp.Email, correo.Destinatario);
                 message.Subject = correo.Titulo;
                 message.Body = correo.Mensaje;
@@ -45,6 +49,7 @@ namespace Procesos
                 Console.WriteLine("Error " + ex.Message);
                 throw ex;
             }
+            
         }
     }
 }

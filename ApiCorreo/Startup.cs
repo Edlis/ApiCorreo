@@ -31,17 +31,17 @@ namespace ApiCorreo
             services.AddControllers();
             var ConfSMTP = Configuration.GetSection("SMTP").Get<SMTPConfiguracionModelo>();
             services.AddSingleton(ConfSMTP);
-            services.AddMassTransit(x =>
-            {
-                //x.AddConsumer<Consumidor>();  
+            //services.AddMassTransit(x =>
+            //{
+            //    x.AddConsumer<Consumidor>();  
 
-                x.UsingRabbitMq((context, cfg) =>
-                {
+            //    x.UsingRabbitMq((context, cfg) =>
+            //    {
 
-                    cfg.ConfigureEndpoints(context);
-                });
-            });
-            services.AddMassTransitHostedService();
+            //        cfg.ConfigureEndpoints(context);
+            //    });
+            //});
+            //services.AddMassTransitHostedService();
 
         }
 
